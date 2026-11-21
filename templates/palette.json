@@ -1,0 +1,36 @@
+{
+  "schema_version": "bio-pathway-ir/1.0",
+  "font_family": "'Noto Sans CJK SC', 'Noto Sans', 'Liberation Sans', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif",
+  "compartment": {
+    "extracellular": {"fill": "#f4f7fb", "stroke": "#9fb3c8"},
+    "membrane": {"fill": "#eef2f7", "stroke": "#7f8fa3"},
+    "cytoplasm": {"fill": "#fbfaf6", "stroke": "#c9b8a3"},
+    "nucleus": {"fill": "#f6f3fb", "stroke": "#a996c6"},
+    "organelle": {"fill": "#f3f9f6", "stroke": "#8fb8a3"},
+    "vesicle": {"fill": "#f8f6f1", "stroke": "#b8a888"},
+    "custom": {"fill": "#f7f7f7", "stroke": "#aaaaaa"}
+  },
+  "entity_kind": {
+    "gene": {"fill": "#f6d6ad", "stroke": "#c77c3e"},
+    "rna": {"fill": "#d7e8b0", "stroke": "#7aa04a"},
+    "protein": {"fill": "#b3d4f0", "stroke": "#3f78a8"},
+    "complex": {"fill": "#d9c7e8", "stroke": "#7c5aa0"},
+    "small_molecule": {"fill": "#f7b6b6", "stroke": "#c0504d"},
+    "process": {"fill": "#ffe08a", "stroke": "#c9a227"},
+    "cell_type": {"fill": "#e8eef5", "stroke": "#6b7f95"},
+    "drug": {"fill": "#c7ecee", "stroke": "#3a9ea4"},
+    "phenotype": {"fill": "#f2f2f2", "stroke": "#8a8a8a"},
+    "other": {"fill": "#eeeeee", "stroke": "#999999"}
+  },
+  "categorical": ["#4e79a7", "#f28e2b", "#59a14f", "#e15759", "#b07aa1", "#76b7b2", "#e8a73c", "#9c755f", "#8cd17d", "#d37295"],
+  "unknown": "#d9d9d9",
+  "diverging": ["#2166ac", "#67a9cf", "#f7f7f7", "#ef8a62", "#b2182b"],
+  "sequential": ["#f7fcf0", "#bae4bc", "#7bccc4", "#2b8cbe", "#084081"],
+  "edge": {
+    "default": "#333333",
+    "feedback": "#8a4a8a",
+    "label_halo": "#ffffff",
+    "strength_tag": "#666666"
+  },
+  "legend": {"fill": "#ffffff", "stroke": "#cccccc", "title": "#222222", "text": "#333333"}
+}

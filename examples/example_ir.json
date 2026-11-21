@@ -1,0 +1,71 @@
+{
+  "schema_version": "bio-pathway-ir/1.0",
+  "case_id": "EXAMPLE-TEACHING-01",
+  "title": "【教学示例·合成材料，非真实案例】配体—受体—转录因子反馈通路",
+  "organism": "Homo sapiens（示例）",
+  "ir_version": "1.0-example",
+  "sources": [
+    {"id": "S1", "type": "text", "title": "合成示例文本（非真实论文，仅用于演示接口与流程）",
+     "locator": "examples/example_ir.json", "locator_detail": "synthetic",
+     "note": "本文件全部 quote 均为合成示例语句，禁止冒充正式案例证据"}
+  ],
+  "compartments": [
+    {"id": "ext", "label": "细胞外", "kind": "extracellular", "rank": 0},
+    {"id": "mem", "label": "细胞膜", "kind": "membrane", "rank": 1},
+    {"id": "cyto", "label": "细胞质", "kind": "cytoplasm", "rank": 2},
+    {"id": "nuc", "label": "细胞核", "kind": "nucleus", "rank": 3}
+  ],
+  "entities": [
+    {"id": "E1", "label": "LIGX", "kind": "protein", "compartment": "ext",
+     "italic": false, "synonyms": ["配体X(合成)"],
+     "data": [{"variable": "log2fc", "value": 1.8, "source": "S1"}],
+     "sources": ["S1"], "note": "合成示例实体"},
+    {"id": "E2", "label": "XR", "kind": "protein", "compartment": "mem",
+     "role": "受体 receptor", "italic": false,
+     "data": [{"variable": "log2fc", "value": 0.6, "source": "S1"}],
+     "sources": ["S1"]},
+    {"id": "E3", "label": "KINA", "kind": "protein", "compartment": "cyto",
+     "italic": false,
+     "data": [{"variable": "log2fc", "value": -0.9, "source": "S1"}],
+     "sources": ["S1"]},
+    {"id": "E4", "label": "TFY", "kind": "protein", "compartment": "nuc",
+     "role": "转录因子", "italic": false,
+     "data": [{"variable": "log2fc", "value": 1.2, "source": "S1"}],
+     "sources": ["S1"], "note": "示例简化：磷酸化后转位入核，节点直接绘于核内"},
+    {"id": "E5", "label": "TGT", "kind": "gene", "compartment": "nuc",
+     "italic": true,
+     "data": [{"variable": "log2fc", "value": -1.5, "source": "S1"}],
+     "sources": ["S1"]},
+    {"id": "E6", "label": "PROZ", "kind": "protein", "compartment": "cyto",
+     "italic": false,
+     "data": [{"variable": "log2fc", "value": 0.3, "source": "S1"}],
+     "sources": ["S1"]}
+  ],
+  "edges": [
+    {"id": "R1", "source": "E1", "target": "E2", "relation": "binds",
+     "direction": "undirected",
+     "evidence": {"source": "S1", "quote": "【合成】配体 LIGX 与膜受体 XR 结合。", "strength": "supports"}},
+    {"id": "R2", "source": "E2", "target": "E3", "relation": "activates",
+     "direction": "directed",
+     "evidence": {"source": "S1", "quote": "【合成】XR 激活胞质激酶 KINA。", "strength": "supports"}},
+    {"id": "R3", "source": "E3", "target": "E4", "relation": "phosphorylates",
+     "direction": "directed",
+     "evidence": {"source": "S1", "quote": "【合成】KINA 磷酸化 TFY，TFY 随后转位入核。", "strength": "supports"}},
+    {"id": "R4", "source": "E4", "target": "E5", "relation": "activates",
+     "direction": "directed",
+     "evidence": {"source": "S1", "quote": "【合成】核内 TFY 激活靶基因 TGT 的转录。", "strength": "partially_supports",
+                  "note": "示例：直接结合位点未给出，故部分支持"}},
+    {"id": "R5", "source": "E5", "target": "E6", "relation": "produces",
+     "direction": "directed",
+     "evidence": {"source": "S1", "quote": "【合成】TGT 转录后产生蛋白 PROZ。", "strength": "supports"}},
+    {"id": "R6", "source": "E6", "target": "E3", "relation": "inhibits",
+     "direction": "directed", "feedback": true,
+     "evidence": {"source": "S1", "quote": "【合成】PROZ 反过来抑制上游 KINA，形成负反馈。", "strength": "supports"}}
+  ],
+  "data_mappings": {
+    "node_fill": {"variable": "log2fc", "type": "diverging",
+                  "domain": [-2, 2], "legend_title": "log2 fold change（合成示例）", "source": "S1"}
+  },
+  "legend": {"custom_entries": [], "show_relations": true, "show_kinds": true, "show_scales": true},
+  "layout": {"width": 1280, "height": 880, "orientation": "columns"}
+}

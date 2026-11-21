@@ -1,0 +1,197 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "bio-pathway-ir/1.0",
+  "title": "Biological mechanism/pathway figure intermediate representation",
+  "type": "object",
+  "required": ["schema_version", "case_id", "sources", "compartments", "entities", "edges"],
+  "properties": {
+    "schema_version": {"const": "bio-pathway-ir/1.0"},
+    "case_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "organism": {"type": "string"},
+    "ir_version": {"type": "string"},
+    "created_at": {"type": "string"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "title"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"enum": ["pdf", "text", "json", "csv", "tsv", "xlsx", "svg", "image", "other"]},
+          "title": {"type": "string"},
+          "version": {"type": "string"},
+          "locator": {"type": "string"},
+          "locator_detail": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "compartments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "kind", "rank"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "kind": {"enum": ["extracellular", "membrane", "cytoplasm", "nucleus", "organelle", "vesicle", "custom"]},
+          "rank": {"type": "integer", "minimum": 0},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "kind", "compartment", "sources"],
+        "properties": {
+          "id": {"type": "string"},
+          "label": {"type": "string"},
+          "kind": {"enum": ["gene", "rna", "protein", "complex", "small_molecule", "process", "cell_type", "drug", "phenotype", "other"]},
+          "role": {"type": "string"},
+          "compartment": {"type": "string"},
+          "italic": {"type": "boolean"},
+          "species_prefix": {"type": "string"},
+          "synonyms": {"type": "array", "items": {"type": "string"}},
+          "external_ids": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["db", "id"],
+              "properties": {
+                "db": {"type": "string"},
+                "id": {"type": "string"},
+                "source": {"type": "string"}
+              }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["variable", "value", "source"],
+              "properties": {
+                "variable": {"type": "string"},
+                "value": {"type": ["number", "string"]},
+                "unit": {"type": "string"},
+                "source": {"type": "string"}
+              }
+            }
+          },
+          "sources": {"type": "array", "items": {"type": "string"}},
+          "uncertainty": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "target", "relation", "evidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "source": {"type": "string"},
+          "target": {"type": "string"},
+          "relation": {
+            "enum": [
+              "activates", "inhibits", "binds",
+              "phosphorylates", "dephosphorylates", "ubiquitinates",
+              "methylates", "acetylates", "other_modification",
+              "transports", "translocates", "recruits",
+              "produces", "degrades", "indirect_effect", "regulates_unspecified"
+            ]
+          },
+          "direction": {"enum": ["directed", "undirected", "bidirectional"]},
+          "label": {"type": "string"},
+          "feedback": {"type": "boolean"},
+          "modification_label": {"type": "string"},
+          "evidence": {
+            "type": "object",
+            "required": ["source", "quote", "strength"],
+            "properties": {
+              "source": {"type": "string"},
+              "quote": {"type": "string"},
+              "strength": {"enum": ["supports", "partially_supports", "conflicting", "unverified"]},
+              "note": {"type": "string"}
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["variable", "value", "source"],
+              "properties": {
+                "variable": {"type": "string"},
+                "value": {"type": ["number", "string"]},
+                "unit": {"type": "string"},
+                "source": {"type": "string"}
+              }
+            }
+          },
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "data_mappings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["variable", "type", "legend_title"],
+        "properties": {
+          "variable": {"type": "string"},
+          "type": {"enum": ["diverging", "sequential", "categorical", "linear"]},
+          "palette": {"type": "array", "items": {"type": "string"}},
+          "domain": {"type": "array", "items": {"type": "number"}},
+          "range": {"type": "array"},
+          "categories": {"type": "array", "items": {"type": "string"}},
+          "legend_title": {"type": "string"},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "legend": {
+      "type": "object",
+      "properties": {
+        "custom_entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "meaning"],
+            "properties": {
+              "label": {"type": "string"},
+              "symbol": {"type": "string"},
+              "meaning": {"type": "string"}
+            }
+          }
+        },
+        "show_relations": {"type": "boolean"},
+        "show_kinds": {"type": "boolean"},
+        "show_scales": {"type": "boolean"}
+      }
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "width": {"type": "integer"},
+        "height": {"type": "integer"},
+        "orientation": {"enum": ["columns", "rows"]},
+        "positions": {"type": "object"},
+        "node_width": {"type": "number"},
+        "node_height": {"type": "number"},
+        "margin": {"type": "number"},
+        "gap": {"type": "number"}
+      }
+    },
+    "edit_context": {
+      "type": "object",
+      "properties": {
+        "source_svg": {"type": "string"},
+        "preserved_layers": {"type": "array", "items": {"type": "string"}},
+        "requested_changes": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

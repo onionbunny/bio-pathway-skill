@@ -1,0 +1,21 @@
+{
+  "schema_version": "bio-pathway-ir/1.0",
+  "case_id": "",
+  "title": "",
+  "organism": "",
+  "ir_version": "0.1-draft",
+  "sources": [
+    {"id": "S1", "type": "pdf", "title": "", "locator": "/input/material.pdf", "locator_detail": ""}
+  ],
+  "compartments": [
+    {"id": "ext", "label": "细胞外 Extracellular", "kind": "extracellular", "rank": 0},
+    {"id": "mem", "label": "细胞膜 Membrane", "kind": "membrane", "rank": 1},
+    {"id": "cyto", "label": "细胞质 Cytoplasm", "kind": "cytoplasm", "rank": 2},
+    {"id": "nuc", "label": "细胞核 Nucleus", "kind": "nucleus", "rank": 3}
+  ],
+  "entities": [],
+  "edges": [],
+  "data_mappings": {},
+  "legend": {"custom_entries": [], "show_relations": true, "show_kinds": true, "show_scales": true},
+  "layout": {"width": 1280, "height": 880, "orientation": "columns"}
+}

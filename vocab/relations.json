@@ -1,0 +1,126 @@
+{
+  "schema_version": "bio-pathway-ir/1.0",
+  "note": "关系判定词表。cue 为触发词（小写匹配，中文直接包含）；glyph 为渲染器使用的端点/线型约定；strength 为证据强度四档。",
+  "strength_levels": {
+    "supports": "证据支持：输入材料有明确、直接的表述或数据",
+    "partially_supports": "部分支持：材料表述有限定条件，或仅为间接/类比证据",
+    "conflicting": "证据不一致：不同材料表述矛盾，需在 uncertainty 中说明",
+    "unverified": "待检验：材料未给出方向或类型，仅能按待检验处理并显式标注"
+  },
+  "relations": [
+    {
+      "relation": "activates",
+      "zh_label": "激活/促进",
+      "cues_zh": ["激活", "促进", "活化", "上调", "增强", "诱导", "刺激"],
+      "cues_en": ["activate", "activates", "activation", "stimulate", "stimulates", "promote", "promotes", "induce", "induces", "upregulate", "upregulates", "enhance"],
+      "glyph": {"line": "solid", "marker_end": "filled_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "inhibits",
+      "zh_label": "抑制",
+      "cues_zh": ["抑制", "下调", "阻断", "灭活", "阻遏", "减弱"],
+      "cues_en": ["inhibit", "inhibits", "inhibition", "suppress", "suppresses", "downregulate", "downregulates", "block", "blocks", "repress", "represses"],
+      "glyph": {"line": "solid", "marker_end": "t_bar", "marker_start": "none"}
+    },
+    {
+      "relation": "binds",
+      "zh_label": "结合",
+      "cues_zh": ["结合", "互作", "相互作用", "结合于", "形成复合物"],
+      "cues_en": ["bind", "binds", "binding", "associate", "associates", "interact", "interacts", "complex with", "dimerize", "dimerise"],
+      "glyph": {"line": "solid", "marker_end": "filled_circle", "marker_start": "none"},
+      "default_direction": "undirected"
+    },
+    {
+      "relation": "phosphorylates",
+      "zh_label": "磷酸化",
+      "cues_zh": ["磷酸化"],
+      "cues_en": ["phosphorylate", "phosphorylates", "phosphorylation"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "P", "marker_start": "none"}
+    },
+    {
+      "relation": "dephosphorylates",
+      "zh_label": "去磷酸化",
+      "cues_zh": ["去磷酸化"],
+      "cues_en": ["dephosphorylate", "dephosphorylates", "dephosphorylation"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "deP", "marker_start": "none"}
+    },
+    {
+      "relation": "ubiquitinates",
+      "zh_label": "泛素化",
+      "cues_zh": ["泛素化"],
+      "cues_en": ["ubiquitinate", "ubiquitinates", "ubiquitination", "ubiquitylate"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "Ub", "marker_start": "none"}
+    },
+    {
+      "relation": "methylates",
+      "zh_label": "甲基化",
+      "cues_zh": ["甲基化"],
+      "cues_en": ["methylate", "methylates", "methylation"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "Me", "marker_start": "none"}
+    },
+    {
+      "relation": "acetylates",
+      "zh_label": "乙酰化",
+      "cues_zh": ["乙酰化"],
+      "cues_en": ["acetylate", "acetylates", "acetylation"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "Ac", "marker_start": "none"}
+    },
+    {
+      "relation": "other_modification",
+      "zh_label": "其他修饰",
+      "cues_zh": ["修饰", "糖基化", "羟基化", "脂化"],
+      "cues_en": ["modify", "modifies", "modification", "glycosylate", "hydroxylate"],
+      "glyph": {"line": "solid", "marker_end": "open_diamond", "tag": "mod", "marker_start": "none"}
+    },
+    {
+      "relation": "transports",
+      "zh_label": "转运",
+      "cues_zh": ["转运", "运输", "泵出", "泵入"],
+      "cues_en": ["transport", "transports", "pump", "pumps", "channel"],
+      "glyph": {"line": "dashed", "marker_end": "open_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "translocates",
+      "zh_label": "转位/易位",
+      "cues_zh": ["转位", "易位", "入核", "转位至", "进入细胞核", "移位"],
+      "cues_en": ["translocate", "translocates", "translocation", "relocalize", "relocalises", "enter the nucleus"],
+      "glyph": {"line": "dashed", "marker_end": "open_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "recruits",
+      "zh_label": "募集",
+      "cues_zh": ["募集", "招募"],
+      "cues_en": ["recruit", "recruits", "recruitment"],
+      "glyph": {"line": "solid", "marker_end": "open_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "produces",
+      "zh_label": "产生/分泌",
+      "cues_zh": ["产生", "生成", "分泌", "表达产生", "合成"],
+      "cues_en": ["produce", "produces", "generate", "generates", "secrete", "secretes", "synthesize"],
+      "glyph": {"line": "solid", "marker_end": "filled_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "degrades",
+      "zh_label": "降解",
+      "cues_zh": ["降解", "水解", "蛋白酶体降解"],
+      "cues_en": ["degrade", "degrades", "degradation", "proteolyze", "cleave", "cleaves"],
+      "glyph": {"line": "dashed", "marker_end": "filled_arrow", "tag": "降解", "marker_start": "none"}
+    },
+    {
+      "relation": "indirect_effect",
+      "zh_label": "间接作用",
+      "cues_zh": ["间接", "间接调控", "通过…影响"],
+      "cues_en": ["indirect", "indirectly", "via intermediates"],
+      "glyph": {"line": "dotted", "marker_end": "open_arrow", "marker_start": "none"}
+    },
+    {
+      "relation": "regulates_unspecified",
+      "zh_label": "调控(方向/类型未指明)",
+      "cues_zh": ["调控", "调节", "参与调节"],
+      "cues_en": ["regulate", "regulates", "regulation", "modulate", "modulates"],
+      "glyph": {"line": "solid", "marker_end": "open_arrow", "marker_start": "none"},
+      "strength_override": "unverified"
+    }
+  ]
+}
